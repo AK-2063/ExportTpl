@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 include '../config.core.php';
 include MODX_CORE_PATH.'config/config.inc.php';
