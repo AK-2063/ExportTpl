@@ -11,11 +11,11 @@ if( !is_dir(MODX_ASSETS_PATH) ){
 }
 
 if( !is_dir($templates_path) ){
-    mkdir($templates_path, 0640);
+    mkdir($templates_path, 0755);
 }
 
 if( !is_dir($chanks_path) ){
-    mkdir($chanks_path, 0640);
+    mkdir($chanks_path, 0755);
 }
 
 $link = mysqli_connect(
@@ -38,15 +38,15 @@ if($result = mysqli_query($link, 'SELECT category,name,snippet FROM `mdx-site_ht
 		    }
 		    $parent_dir = $chanks_path.$parent['category'].'/';
 		    echo $parent_dir.$rowcat['category']."/".$row['name']."\n";
-		    if(!is_dir($parent_dir)) mkdir($parent_dir, 0640);
-		    if(!is_dir($parent_dir.$rowcat['category'])) mkdir($parent_dir.$rowcat['category'], 0640);
+		    if(!is_dir($parent_dir)) mkdir($parent_dir, 0755);
+		    if(!is_dir($parent_dir.$rowcat['category'])) mkdir($parent_dir.$rowcat['category'], 0755);
 		    $tpl = fopen($parent_dir.$rowcat['category']."/".$row['name'], 'w');
 		    fwrite($tpl, $row['snippet']);
     		    fclose($tpl);
 		}
 	    }
 	    echo $chanks_path.$rowcat['category']."/".$row['name']."\n";
-	    if(!is_dir($chanks_path.$rowcat['category'])) mkdir($chanks_path.$rowcat['category'], 0640);
+	    if(!is_dir($chanks_path.$rowcat['category'])) mkdir($chanks_path.$rowcat['category'], 0755);
 	    $tpl = fopen($chanks_path.$rowcat['category']."/".$row['name'], 'w');
 	    fwrite($tpl, $row['snippet']);
 	    fclose($tpl);
